@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react';
 import { CATEGORIES, products, Category, Product } from '@/data/products';
 import { Badge, H2, Subtitle } from './Heading';
 import ProductCard from './ProductCard';
+import { INSTAGRAM_URL } from '@/lib/contact';
 
 export default function Catalog({ onOrder }: { onOrder: (p: Product) => void }) {
   const [filter, setFilter] = useState<Category | 'all'>('all');
@@ -54,7 +55,15 @@ export default function Catalog({ onOrder }: { onOrder: (p: Product) => void }) 
         </div>
 
         <p className="mt-6 text-xs text-brand-muted">
-          Показано {list.length} из {products.length} позиций · {filter === 'all' ? 'все категории' : CATEGORIES.find((c) => c.id === filter)?.label}
+          Больше работ с ценами — в нашем{' '}
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="font-semibold uppercase tracking-wider text-brand-goldhover hover:text-brand-gold underline underline-offset-2"
+          >
+            Instagram @ritual.kgz
+          </a>
         </p>
       </div>
     </section>
