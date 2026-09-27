@@ -9,6 +9,7 @@ import Advantages from '@/components/Advantages';
 import Testimonials from '@/components/Testimonials';
 import ContactCTA from '@/components/ContactCTA';
 import Footer from '@/components/Footer';
+import FloatingInstagram from '@/components/FloatingInstagram';
 import LeadModal from '@/components/LeadModal';
 import { Product } from '@/data/products';
 
@@ -48,6 +49,7 @@ export default function HomePage() {
         <ContactCTA onOrder={openGeneric} />
       </main>
       <Footer />
+      <FloatingInstagram />
       <LeadModal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
