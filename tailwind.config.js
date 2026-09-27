@@ -28,7 +28,7 @@ module.exports = {
         stonedark: '0 8px 30px rgba(0, 0, 0, 0.35)',
       },
       maxWidth: {
-        container: '1200px',
+        container: '1340px',
       },
     },
   },

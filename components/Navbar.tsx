@@ -44,7 +44,7 @@ export default function Navbar({ onOrder }: { onOrder: () => void }) {
           </span>
         </a>
 
-        <nav className="hidden xl:flex items-center gap-5 2xl:gap-7" aria-label="Основная навигация">
+        <nav className="hidden xl:flex items-center gap-6 2xl:gap-8" aria-label="Основная навигация">
           {LINKS.map((l) => (
             <a
               key={l.href}
@@ -56,7 +56,7 @@ export default function Navbar({ onOrder }: { onOrder: () => void }) {
           ))}
         </nav>
 
-        <div className="hidden xl:flex items-center gap-3 shrink-0">
+        <div className="hidden xl:flex items-center gap-4 shrink-0">
           <a
             href={INSTAGRAM_URL}
             target="_blank"
