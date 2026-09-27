@@ -6,7 +6,7 @@ import { WHATSAPP_NUMBER, PHONE_DISPLAY, INSTAGRAM_URL } from '@/lib/contact';
 const LINKS = [
   { href: '#catalog', label: 'Каталог' },
   { href: '#services', label: 'Услуги' },
-  { href: '#works', label: 'Наши работы' },
+  { href: '#works', label: 'Работы' },
   { href: '#reviews', label: 'Отзывы' },
   { href: '#contacts', label: 'Контакты' },
 ];
@@ -38,25 +38,25 @@ export default function Navbar({ onOrder }: { onOrder: () => void }) {
           />
           <span className="leading-none">
             <span className="block font-serif text-xl font-bold tracking-wide">RITUAL.KG</span>
-            <span className="block text-[10px] uppercase tracking-[0.2em] text-white/60">
+            <span className="block text-[9px] uppercase tracking-[0.18em] text-white/60 whitespace-nowrap">
               памятники · ограды · облицовка
             </span>
           </span>
         </a>
 
-        <nav className="hidden lg:flex items-center gap-7" aria-label="Основная навигация">
+        <nav className="hidden xl:flex items-center gap-5 2xl:gap-7" aria-label="Основная навигация">
           {LINKS.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="text-[13px] font-medium uppercase tracking-wider text-white/80 hover:text-brand-gold transition-colors"
+              className="text-xs 2xl:text-[13px] font-medium uppercase tracking-wider whitespace-nowrap text-white/80 hover:text-brand-gold transition-colors"
             >
               {l.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden xl:flex items-center gap-3 shrink-0">
           <a
             href={INSTAGRAM_URL}
             target="_blank"
@@ -70,21 +70,21 @@ export default function Navbar({ onOrder }: { onOrder: () => void }) {
             href={`https://wa.me/${WHATSAPP_NUMBER}`}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 text-sm text-white/80 hover:text-brand-gold"
+            className="flex items-center gap-2 text-[13px] whitespace-nowrap text-white/80 hover:text-brand-gold"
           >
-            <MessageCircle size={16} />
+            <MessageCircle size={16} className="shrink-0" />
             <span className="font-semibold">{PHONE_DISPLAY}</span>
           </a>
           <button
             onClick={onOrder}
-            className="inline-flex items-center gap-2 rounded-[2px] bg-brand-gold hover:bg-brand-goldhover px-5 py-2.5 text-[13px] font-semibold uppercase tracking-wider text-white transition-colors"
+            className="inline-flex items-center gap-2 rounded-[2px] bg-brand-gold hover:bg-brand-goldhover px-4 2xl:px-5 py-2.5 text-xs 2xl:text-[13px] font-semibold uppercase tracking-wider whitespace-nowrap text-white transition-colors"
           >
             Рассчитать стоимость
           </button>
         </div>
 
         <button
-          className="lg:hidden text-white p-2"
+          className="xl:hidden text-white p-2"
           onClick={() => setOpen(!open)}
           aria-label="Меню"
         >
@@ -93,7 +93,7 @@ export default function Navbar({ onOrder }: { onOrder: () => void }) {
       </div>
 
       {open && (
-        <nav className="lg:hidden border-t border-white/10 bg-brand-dark px-4 py-4 flex flex-col gap-1">
+        <nav className="xl:hidden border-t border-white/10 bg-brand-dark px-4 py-4 flex flex-col gap-1">
           {LINKS.map((l) => (
             <a
               key={l.href}
