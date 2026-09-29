@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { X, MessageCircle, Send, Loader2 } from 'lucide-react';
 import { SERVICE_TYPES, Product } from '@/data/products';
 import { buildWhatsAppLink, sendToTelegram, LeadData } from '@/lib/contact';
@@ -54,8 +55,6 @@ export default function LeadModal({
     return () => window.removeEventListener('keydown', fn);
   }, [open, onClose]);
 
-  if (!open) return null;
-
   const valid = name.trim().length >= 2 && phone.trim().length >= 6;
 
   async function handleSubmit(e: React.FormEvent) {
@@ -84,17 +83,27 @@ export default function LeadModal({
   }
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/60 p-0 md:p-6"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-label="Рассчитать стоимость"
-    >
-      <div
-        className="w-full max-w-lg bg-white rounded-[4px] shadow-stonedark overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
-      >
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/60 p-0 md:p-6"
+          onClick={onClose}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Рассчитать стоимость"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25, ease: 'easeOut' }}
+        >
+          <motion.div
+            className="w-full max-w-lg bg-white rounded-[4px] shadow-stonedark overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0, transform: 'translateY(24px) scale(0.98)' }}
+            animate={{ opacity: 1, transform: 'translateY(0px) scale(1)' }}
+            exit={{ opacity: 0, transform: 'translateY(16px) scale(0.98)' }}
+            transition={{ duration: 0.32, ease: 'easeOut' }}
+          >
         <div className="flex items-center justify-between bg-brand-dark px-6 py-4">
           <div>
             <p className="section-badge text-brand-gold">Бесплатный расчет</p>
@@ -224,7 +233,9 @@ export default function LeadModal({
             </p>
           </form>
         )}
-      </div>
-    </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

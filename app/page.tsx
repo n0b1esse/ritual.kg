@@ -11,6 +11,7 @@ import ContactCTA from '@/components/ContactCTA';
 import Footer from '@/components/Footer';
 import FloatingInstagram from '@/components/FloatingInstagram';
 import LeadModal from '@/components/LeadModal';
+import { MotionProvider } from '@/components/motion';
 import { Product } from '@/data/products';
 
 export default function HomePage() {
@@ -37,7 +38,7 @@ export default function HomePage() {
   }
 
   return (
-    <>
+    <MotionProvider>
       <Navbar onOrder={openGeneric} />
       <main>
         <Hero onConsult={openGeneric} />
@@ -56,6 +57,6 @@ export default function HomePage() {
         presetProduct={product}
         presetService={service}
       />
-    </>
+    </MotionProvider>
   );
 }

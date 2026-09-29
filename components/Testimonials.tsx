@@ -1,24 +1,29 @@
+'use client';
 import { Star, Instagram } from 'lucide-react';
 import { Badge, H2 } from './Heading';
+import { Reveal } from './motion';
 import { INSTAGRAM_URL } from '@/lib/contact';
 
 export default function Testimonials() {
   return (
     <section id="reviews" className="bg-white border-t border-brand-border scroll-mt-20">
       <div className="mx-auto max-w-container px-4 md:px-6 py-16 md:py-20">
-        <Badge>Отзывы</Badge>
-        <div className="mt-3 flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <H2>Нас рекомендуют семьям</H2>
-          <a
-            href={INSTAGRAM_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-goldhover hover:text-brand-gold"
-          >
-            <Instagram size={16} /> Все отзывы — в нашем Instagram
-          </a>
-        </div>
+        <Reveal>
+          <Badge>Отзывы</Badge>
+          <div className="mt-3 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <H2>Нас рекомендуют семьям</H2>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-goldhover hover:text-brand-gold"
+            >
+              <Instagram size={16} /> Все отзывы — в нашем Instagram
+            </a>
+          </div>
+        </Reveal>
 
+        <Reveal delay={0.1}>
         <figure className="mt-8 max-w-3xl bg-brand-light border border-brand-border border-l-2 border-l-brand-gold rounded-[3px] p-7 md:p-9 stone-card">
           <div className="flex gap-1 text-brand-gold" aria-label="Оценка 5 из 5">
             {Array.from({ length: 5 }).map((_, i) => (
@@ -40,6 +45,7 @@ export default function Testimonials() {
             </span>
           </figcaption>
         </figure>
+        </Reveal>
       </div>
     </section>
   );

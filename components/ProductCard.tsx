@@ -1,4 +1,5 @@
 'use client';
+import { motion } from 'motion/react';
 import { Product, formatPrice } from '@/data/products';
 
 export default function ProductCard({
@@ -9,7 +10,14 @@ export default function ProductCard({
   onOrder: (p: Product) => void;
 }) {
   return (
-    <article className="group bg-white border border-brand-border stone-card rounded-[3px] overflow-hidden flex flex-col hover:border-brand-gold transition-colors">
+    <motion.article
+      layout
+      initial={{ opacity: 0, transform: 'translateY(16px)' }}
+      animate={{ opacity: 1, transform: 'translateY(0px)' }}
+      exit={{ opacity: 0, transform: 'translateY(10px)' }}
+      transition={{ duration: 0.35, ease: 'easeOut' }}
+      className="group bg-white border border-brand-border stone-card rounded-[3px] overflow-hidden flex flex-col hover:border-brand-gold transition-colors"
+    >
       <div className="relative aspect-[4/3] overflow-hidden bg-brand-border/40">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -57,6 +65,6 @@ export default function ProductCard({
           </button>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }

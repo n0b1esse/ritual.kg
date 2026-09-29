@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { Phone, Menu, X, MessageCircle, Instagram } from 'lucide-react';
 import { WHATSAPP_NUMBER, PHONE_DISPLAY, INSTAGRAM_URL } from '@/lib/contact';
 
@@ -92,37 +93,48 @@ export default function Navbar({ onOrder }: { onOrder: () => void }) {
         </button>
       </div>
 
-      {open && (
-        <nav className="xl:hidden border-t border-white/10 bg-brand-dark px-4 py-4 flex flex-col gap-1">
-          {LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="py-2.5 text-sm uppercase tracking-wider text-white/85 hover:text-brand-gold border-b border-white/5"
-            >
-              {l.label}
-            </a>
-          ))}
-          <div className="flex gap-2 pt-3">
-            <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}`}
-              className="flex-1 inline-flex justify-center items-center gap-2 border border-white/30 text-white px-4 py-3 text-xs uppercase tracking-wider rounded-[2px]"
-            >
-              <Phone size={14} /> Позвонить
-            </a>
-            <button
-              onClick={() => {
-                setOpen(false);
-                onOrder();
-              }}
-              className="flex-1 bg-brand-gold text-white px-4 py-3 text-xs uppercase tracking-wider font-semibold rounded-[2px]"
-            >
-              Рассчитать стоимость
-            </button>
-          </div>
-        </nav>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.nav
+            className="xl:hidden border-t border-white/10 bg-brand-dark px-4 py-4 flex flex-col gap-1 overflow-hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+          >
+            {LINKS.map((l, i) => (
+              <motion.a
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="py-2.5 text-sm uppercase tracking-wider text-white/85 hover:text-brand-gold border-b border-white/5"
+                initial={{ opacity: 0, transform: 'translateY(8px)' }}
+                animate={{ opacity: 1, transform: 'translateY(0px)' }}
+                transition={{ duration: 0.3, delay: 0.04 * i, ease: 'easeOut' }}
+              >
+                {l.label}
+              </motion.a>
+            ))}
+            <div className="flex gap-2 pt-3">
+              <a
+                href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                className="flex-1 inline-flex justify-center items-center gap-2 border border-white/30 text-white px-4 py-3 text-xs uppercase tracking-wider rounded-[2px]"
+              >
+                <Phone size={14} /> Позвонить
+              </a>
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  onOrder();
+                }}
+                className="flex-1 bg-brand-gold text-white px-4 py-3 text-xs uppercase tracking-wider font-semibold rounded-[2px]"
+              >
+                Рассчитать стоимость
+              </button>
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
