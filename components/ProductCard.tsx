@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'motion/react';
-import { Product, formatPrice } from '@/data/products';
+import { Product } from '@/data/products';
 
 export default function ProductCard({
   product,
@@ -45,21 +45,13 @@ export default function ProductCard({
         <p className="mt-2 text-sm leading-relaxed text-brand-muted line-clamp-2">
           {product.description}
         </p>
-        <div className="mt-4 flex items-end justify-between border-t border-brand-border pt-4 mt-auto">
-          <div>
-            <p className="text-[11px] uppercase tracking-wider text-brand-muted">от</p>
-            <p className="font-serif text-2xl font-bold text-brand-dark">
-              {formatPrice(product.priceFrom)}
-              {product.priceSuffix && (
-                <span className="text-sm font-sans font-medium text-brand-muted">
-                  {product.priceSuffix}
-                </span>
-              )}
-            </p>
-          </div>
+        <div className="mt-auto border-t border-brand-border pt-4">
+          <p className="text-[11px] uppercase tracking-wider text-brand-muted">
+            Стоимость рассчитаем после замера
+          </p>
           <button
             onClick={() => onOrder(product)}
-            className="rounded-[2px] border border-brand-gold px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-brand-goldhover hover:bg-brand-gold hover:text-white transition-colors"
+            className="mt-3 w-full rounded-[2px] border border-brand-gold px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-brand-goldhover hover:bg-brand-gold hover:text-white transition-colors"
           >
             Заказать расчет
           </button>

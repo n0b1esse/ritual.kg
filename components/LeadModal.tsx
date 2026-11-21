@@ -36,7 +36,7 @@ export default function LeadModal({
           complex: SERVICE_TYPES[3],
         };
         setService(map[presetProduct.category] ?? SERVICE_TYPES[0]);
-        setComment(`Интересует: ${presetProduct.title} (от ${presetProduct.priceFrom} сом). `);
+        setComment(`Интересует: ${presetProduct.title}. `);
       } else if (presetService) {
         setService(presetService);
       }

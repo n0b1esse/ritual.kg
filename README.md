@@ -19,7 +19,7 @@ docker compose up -d --build
 
 Скопируйте `.env.example` в `.env.local` (локально) или задайте в `docker-compose.yml`:
 
-- `NEXT_PUBLIC_WHATSAPP_NUMBER` — номер для приёма заявок (без `+`, например `996555123456`)
+- `NEXT_PUBLIC_WHATSAPP_NUMBER` — номер для приёма заявок (без `+`, например `996551177107`)
 - `NEXT_PUBLIC_TELEGRAM_BOT_TOKEN` — токен Telegram-бота (опционально)
 - `NEXT_PUBLIC_TELEGRAM_CHAT_ID` — chat_id мастера (опционально)
 

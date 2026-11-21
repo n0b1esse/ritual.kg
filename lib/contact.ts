@@ -2,7 +2,7 @@ export const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '99655
 export const PHONE_DISPLAY = '+996 551 177 107';
 export const PHONE_SECONDARY = '+996 505 177 107';
 export const INSTAGRAM_URL =
-  'https://www.instagram.com/ritual.kgz?utm_source=site&utm_medium=website';
+  'https://www.instagram.com/ritual.kgz?utm_source=ig_web_button_share_sheet&bqrl=ZDNlZDc0MzIxNw==';
 export const TELEGRAM_BOT_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN || '';
 export const TELEGRAM_CHAT_ID = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID || '';
 

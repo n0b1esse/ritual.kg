@@ -28,7 +28,7 @@ export default function Catalog({ onOrder }: { onOrder: (p: Product) => void }) 
             </H2>
             <Subtitle>
               <span className="block max-w-md">
-                Цены «от» — точный расчет за 15 минут после замера и выбора материала.
+                Точный расчет за 15 минут после замера и выбора материала.
               </span>
             </Subtitle>
           </div>
@@ -61,7 +61,7 @@ export default function Catalog({ onOrder }: { onOrder: (p: Product) => void }) 
         </motion.div>
 
         <p className="mt-6 text-xs text-brand-muted">
-          Больше работ с ценами — в нашем{' '}
+          Больше работ — в нашем{' '}
           <a
             href={INSTAGRAM_URL}
             target="_blank"

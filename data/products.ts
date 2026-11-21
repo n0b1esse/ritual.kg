@@ -6,8 +6,6 @@ export interface Product {
   category: Category;
   categoryLabel: string;
   material: string;
-  priceFrom: number;
-  priceSuffix?: string;
   image: string;
   description: string;
   badge?: string;
@@ -38,7 +36,6 @@ export const products: Product[] = [
     category: 'monuments',
     categoryLabel: 'Памятники',
     material: 'Гранит',
-    priceFrom: 45000,
     image: '/img/ig-01.jpg',
     description: 'Гравировка портретов и надписей, художественное оформление стелы.',
     badge: 'Хит',
@@ -49,7 +46,6 @@ export const products: Product[] = [
     category: 'monuments',
     categoryLabel: 'Памятники',
     material: 'Гранит чёрный',
-    priceFrom: 52000,
     image: '/img/ig-13.jpg',
     description: 'Полированный чёрный гранит, цветник, гравировка в стоимости.',
   },
@@ -59,7 +55,6 @@ export const products: Product[] = [
     category: 'monuments',
     categoryLabel: 'Памятники',
     material: 'Гранит красный',
-    priceFrom: 68000,
     image: '/img/ig-16.jpg',
     description: 'Красный гранит с позолоченными буквами, благоустройство вокруг.',
     badge: 'Premium',
@@ -70,7 +65,6 @@ export const products: Product[] = [
     category: 'fences',
     categoryLabel: 'Ограды',
     material: 'Металл + ковка',
-    priceFrom: 28000,
     image: '/img/ig-15.jpg',
     description: 'Ручная ковка, вензеля, калитка, покраска.',
   },
@@ -80,7 +74,6 @@ export const products: Product[] = [
     category: 'fences',
     categoryLabel: 'Ограды',
     material: 'Металл + ковка',
-    priceFrom: 32000,
     image: '/img/ig-12.jpg',
     description: 'Установка за 1 день: замер, изготовление, монтаж и покраска.',
   },
@@ -90,8 +83,6 @@ export const products: Product[] = [
     category: 'paving',
     categoryLabel: 'Брусчатка и облицовка',
     material: 'Брусчатка',
-    priceFrom: 1800,
-    priceSuffix: '/м²',
     image: '/img/ig-08.jpg',
     description: 'Подготовка основания, укладка плитки, поребрик, выравнивание.',
   },
@@ -101,7 +92,6 @@ export const products: Product[] = [
     category: 'complex',
     categoryLabel: 'Комплексы',
     material: 'Гранит + ковка',
-    priceFrom: 180000,
     image: '/img/ig-06.jpg',
     description: 'Памятник, цоколь, ограда, плитка — всё из гранита, под ключ.',
     badge: 'Под ключ',
@@ -112,12 +102,7 @@ export const products: Product[] = [
     category: 'complex',
     categoryLabel: 'Комплексы',
     material: 'Гранит + ковка',
-    priceFrom: 240000,
     image: '/img/ig-17.jpg',
     description: 'Памятник, кованая ограда, брусчатка, столик и скамейка.',
   },
 ];
-
-export function formatPrice(n: number): string {
-  return `${n.toLocaleString('ru-RU')} сом`;
-}
