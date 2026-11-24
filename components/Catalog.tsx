@@ -60,6 +60,21 @@ export default function Catalog({ onOrder }: { onOrder: (p: Product) => void }) 
           </AnimatePresence>
         </motion.div>
 
+        <div className="mt-8 rounded-[4px] border border-brand-border bg-white p-4 md:p-5 flex flex-col md:flex-row md:items-center gap-4 justify-between">
+          <div>
+            <p className="text-sm font-semibold text-brand-dark">Полный каталог клиента — 95 страниц</p>
+            <p className="text-xs leading-relaxed text-brand-muted max-w-xl">
+              Онлайн-листалка + PDF (32.5 Мб). Удобно показывать клиенту на телефоне, каждая страница увеличивается и есть кнопка «Цена этой модели» в WhatsApp.
+            </p>
+          </div>
+          <a
+            href="/catalog"
+            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-[2px] bg-brand-dark px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-black"
+          >
+            Открыть каталог → 95 стр.
+          </a>
+        </div>
+
         <p className="mt-6 text-xs text-brand-muted">
           Больше работ — в нашем{' '}
           <a
