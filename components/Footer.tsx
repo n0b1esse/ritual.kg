@@ -1,5 +1,7 @@
+import Link from 'next/link';
 import { MapPin, Clock, Phone, MessageCircle, Instagram } from 'lucide-react';
 import { WHATSAPP_NUMBER, PHONE_DISPLAY, PHONE_SECONDARY, INSTAGRAM_URL } from '@/lib/contact';
+import { NAV_LINKS } from '@/data/navigation';
 
 export default function Footer() {
   return (
@@ -51,17 +53,11 @@ export default function Footer() {
         <nav aria-label="Навигация в подвале">
           <p className="section-badge text-brand-gold">Навигация</p>
           <ul className="mt-4 space-y-2.5 text-sm text-white/70">
-            {[
-              ['#catalog', 'Каталог'],
-              ['#services', 'Услуги'],
-              ['#works', 'Наши работы'],
-              ['#reviews', 'Отзывы'],
-              ['#top', 'Наверх'],
-            ].map(([href, label]) => (
-              <li key={href}>
-                <a href={href} className="hover:text-brand-gold transition-colors">
-                  {label}
-                </a>
+            {NAV_LINKS.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="hover:text-brand-gold transition-colors">
+                  {l.label}
+                </Link>
               </li>
             ))}
           </ul>

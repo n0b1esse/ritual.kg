@@ -9,3 +9,6 @@ out/
 # --- misc ---
 *.log
 .DS_Store
+*.pdf
+tsconfig.tsbuildinfo
+.playwright-mcp/

@@ -1,16 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { AnimatePresence, motion } from 'motion/react';
 import { Phone, Menu, X, MessageCircle, Instagram } from 'lucide-react';
 import { WHATSAPP_NUMBER, PHONE_DISPLAY, INSTAGRAM_URL } from '@/lib/contact';
-
-const LINKS = [
-  { href: '#catalog', label: 'Каталог' },
-  { href: '#services', label: 'Услуги' },
-  { href: '#works', label: 'Работы' },
-  { href: '#reviews', label: 'Отзывы' },
-  { href: '#contacts', label: 'Контакты' },
-];
+import { NAV_LINKS } from '@/data/navigation';
 
 export default function Navbar({ onOrder }: { onOrder: () => void }) {
   const [scrolled, setScrolled] = useState(false);
@@ -30,7 +24,7 @@ export default function Navbar({ onOrder }: { onOrder: () => void }) {
       }`}
     >
       <div className="mx-auto flex h-16 md:h-20 max-w-container items-center justify-between px-4 md:px-6">
-        <a href="#top" className="flex items-center gap-2.5 text-white">
+        <Link href="/" className="flex items-center gap-2.5 text-white">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/img/avatar.jpg"
@@ -43,17 +37,17 @@ export default function Navbar({ onOrder }: { onOrder: () => void }) {
               памятники · ограды · облицовка
             </span>
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden xl:flex items-center gap-6 2xl:gap-8" aria-label="Основная навигация">
-          {LINKS.map((l) => (
-            <a
+          {NAV_LINKS.map((l) => (
+            <Link
               key={l.href}
               href={l.href}
               className="text-xs 2xl:text-[13px] font-medium uppercase tracking-wider whitespace-nowrap text-white/80 hover:text-brand-gold transition-colors"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -102,18 +96,21 @@ export default function Navbar({ onOrder }: { onOrder: () => void }) {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
           >
-            {LINKS.map((l, i) => (
-              <motion.a
+            {NAV_LINKS.map((l, i) => (
+              <motion.div
                 key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="py-2.5 text-sm uppercase tracking-wider text-white/85 hover:text-brand-gold border-b border-white/5"
                 initial={{ opacity: 0, transform: 'translateY(8px)' }}
                 animate={{ opacity: 1, transform: 'translateY(0px)' }}
                 transition={{ duration: 0.3, delay: 0.04 * i, ease: 'easeOut' }}
               >
-                {l.label}
-              </motion.a>
+                <Link
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="block py-2.5 text-sm uppercase tracking-wider text-white/85 hover:text-brand-gold border-b border-white/5"
+                >
+                  {l.label}
+                </Link>
+              </motion.div>
             ))}
             <div className="flex gap-2 pt-3">
               <a
