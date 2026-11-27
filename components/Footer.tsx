@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { MapPin, Clock, Phone, MessageCircle, Instagram } from 'lucide-react';
 import { WHATSAPP_NUMBER, PHONE_DISPLAY, PHONE_SECONDARY, INSTAGRAM_URL } from '@/lib/contact';
 import { NAV_LINKS } from '@/data/navigation';
+import CatalogMenuButton from './CatalogMenuButton';
 
 export default function Footer() {
   return (
@@ -55,9 +56,13 @@ export default function Footer() {
           <ul className="mt-4 space-y-2.5 text-sm text-white/70">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="hover:text-brand-gold transition-colors">
-                  {l.label}
-                </Link>
+                {l.href === '/catalog' ? (
+                  <CatalogMenuButton label={l.label} />
+                ) : (
+                  <Link href={l.href} className="hover:text-brand-gold transition-colors">
+                    {l.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

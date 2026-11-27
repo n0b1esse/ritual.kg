@@ -5,10 +5,12 @@ import { CATEGORIES, products, Category, Product } from '@/data/products';
 import { Badge, H2, Subtitle } from './Heading';
 import ProductCard from './ProductCard';
 import { Reveal } from './motion';
+import { useCatalogGallery } from './CatalogGalleryProvider';
 import { INSTAGRAM_URL } from '@/lib/contact';
 
 export default function Catalog({ onOrder }: { onOrder: (p: Product) => void }) {
   const [filter, setFilter] = useState<Category | 'all'>('all');
+  const { openGallery } = useCatalogGallery();
 
   const list = useMemo(
     () => (filter === 'all' ? products : products.filter((p) => p.category === filter)),
@@ -67,12 +69,12 @@ export default function Catalog({ onOrder }: { onOrder: (p: Product) => void }) 
               Памятники, ограды, кресты, гробы, венки и аксессуары — откройте галерею прямо на сайте. Каждая страница увеличивается, а кнопка «Цена этой модели» отправляет запрос в WhatsApp.
             </p>
           </div>
-          <a
-            href="/catalog"
+          <button
+            onClick={() => openGallery()}
             className="inline-flex shrink-0 items-center justify-center gap-2 rounded-[2px] bg-brand-dark px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-black"
           >
             Открыть галерею → 149 стр.
-          </a>
+          </button>
         </div>
 
         <p className="mt-6 text-xs text-brand-muted">

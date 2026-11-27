@@ -5,10 +5,12 @@ import { AnimatePresence, motion } from 'motion/react';
 import { Phone, Menu, X, MessageCircle, Instagram } from 'lucide-react';
 import { WHATSAPP_NUMBER, PHONE_DISPLAY, INSTAGRAM_URL } from '@/lib/contact';
 import { NAV_LINKS } from '@/data/navigation';
+import { useCatalogGallery } from './CatalogGalleryProvider';
 
 export default function Navbar({ onOrder }: { onOrder: () => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { openGallery } = useCatalogGallery();
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 24);
@@ -40,15 +42,28 @@ export default function Navbar({ onOrder }: { onOrder: () => void }) {
         </Link>
 
         <nav className="hidden xl:flex items-center gap-6 2xl:gap-8" aria-label="Основная навигация">
-          {NAV_LINKS.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="text-xs 2xl:text-[13px] font-medium uppercase tracking-wider whitespace-nowrap text-white/80 hover:text-brand-gold transition-colors"
-            >
-              {l.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((l) =>
+            l.href === '/catalog' ? (
+              <button
+                key={l.href}
+                onClick={() => {
+                  setOpen(false);
+                  openGallery();
+                }}
+                className="text-xs 2xl:text-[13px] font-medium uppercase tracking-wider whitespace-nowrap text-white/80 hover:text-brand-gold transition-colors"
+              >
+                {l.label}
+              </button>
+            ) : (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="text-xs 2xl:text-[13px] font-medium uppercase tracking-wider whitespace-nowrap text-white/80 hover:text-brand-gold transition-colors"
+              >
+                {l.label}
+              </Link>
+            )
+          )}
         </nav>
 
         <div className="hidden xl:flex items-center gap-4 shrink-0">
@@ -103,13 +118,25 @@ export default function Navbar({ onOrder }: { onOrder: () => void }) {
                 animate={{ opacity: 1, transform: 'translateY(0px)' }}
                 transition={{ duration: 0.3, delay: 0.04 * i, ease: 'easeOut' }}
               >
-                <Link
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="block py-2.5 text-sm uppercase tracking-wider text-white/85 hover:text-brand-gold border-b border-white/5"
-                >
-                  {l.label}
-                </Link>
+                {l.href === '/catalog' ? (
+                  <button
+                    onClick={() => {
+                      setOpen(false);
+                      openGallery();
+                    }}
+                    className="block w-full text-left py-2.5 text-sm uppercase tracking-wider text-white/85 hover:text-brand-gold border-b border-white/5"
+                  >
+                    {l.label}
+                  </button>
+                ) : (
+                  <Link
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="block py-2.5 text-sm uppercase tracking-wider text-white/85 hover:text-brand-gold border-b border-white/5"
+                  >
+                    {l.label}
+                  </Link>
+                )}
               </motion.div>
             ))}
             <div className="flex gap-2 pt-3">

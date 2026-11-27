@@ -75,10 +75,20 @@ function waLink(pageNum?: number) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 }
 
-export default function CatalogClient({ initialSection = 'all' }: { initialSection?: SectionId | 'all' }) {
+export default function CatalogClient({
+  initialSection = 'all',
+  overlay = false,
+  initialPage,
+  onClose,
+}: {
+  initialSection?: SectionId | 'all';
+  overlay?: boolean;
+  initialPage?: number;
+  onClose?: () => void;
+}) {
   const [filter, setFilter] = useState<SectionId | 'all'>(initialSection);
   const [view, setView] = useState<'grid' | 'strip'>('grid');
-  const [activeNum, setActiveNum] = useState<number | null>(null);
+  const [activeNum, setActiveNum] = useState<number | null>(overlay ? initialPage ?? 1 : null);
   const [direction, setDirection] = useState<1 | -1>(1);
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
@@ -107,7 +117,10 @@ export default function CatalogClient({ initialSection = 'all' }: { initialSecti
     [activeNum]
   );
 
-  const close = useCallback(() => setActiveNum(null), []);
+  const close = useCallback(() => {
+    setActiveNum(null);
+    if (overlay) onClose?.();
+  }, [overlay, onClose]);
 
   const step = useCallback(
     (dir: 1 | -1) => {
@@ -381,7 +394,7 @@ export default function CatalogClient({ initialSection = 'all' }: { initialSecti
         {activePage && (
           <motion.div
             ref={viewerRef}
-            className="fixed inset-0 z-50 flex flex-col bg-black/95"
+            className={`fixed inset-0 z-50 flex flex-col ${overlay ? 'bg-black' : 'bg-black/95'}`}
             role="dialog"
             aria-modal="true"
             aria-label="Просмотр страницы каталога"

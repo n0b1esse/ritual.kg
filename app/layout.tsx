@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import CatalogGalleryProvider from '@/components/CatalogGalleryProvider';
 
 export const metadata: Metadata = {
   title: 'Ritual.kg — Изготовление памятников и благоустройство в Кыргызстане | Гранит, мрамор',
@@ -25,7 +26,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="font-sans bg-brand-light text-brand-text">{children}</body>
+      <body className="font-sans bg-brand-light text-brand-text">
+        <CatalogGalleryProvider>{children}</CatalogGalleryProvider>
+      </body>
     </html>
   );
 }
